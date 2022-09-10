@@ -1,0 +1,41 @@
+package test;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+public class First {
+
+	public static void main(String[] args) {
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\thirumalai\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver = new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().pageLoadTimeout(40, TimeUnit.SECONDS);
+		driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+		driver.get("https:\\www.google.co.in");
+		driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+		driver.findElement(By.name("q")).sendKeys("Selenium Tutorial");
+		WebElement W=driver.findElement(By.xpath("/html/body/div[1]/div[3]/form/div[1]/div[1]/div[3]/center/input[1]"));
+        W.click();
+        driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+        WebElement C=driver.findElement(By.xpath("//*[@id=\"tads\"]/div/div/div/div/div[1]/a/div[1]/span"));
+        C.click();
+        driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+       //WebElement D = driver.findElement(By.xpath("//*[@id=\"menu-item-3444\"]/a"));
+       // D.click();
+        //System.out.println("The output is:"+D.getText());
+        WebElement f= driver.findElement(By.xpath("//a[contains(text(), 'Start Free Trial!')]"));
+	    
+	    WebDriverWait wait = new WebDriverWait(driver,100);
+	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[contains(text(), 'Start Free Trial!')]")));
+	    f.click();
+	    System.out.println(f.getText());
+	}
+
+}
